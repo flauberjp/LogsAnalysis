@@ -51,3 +51,8 @@ Following is an exemple result:
 * How to SUM two fields within an SQL query. URL: < https://stackoverflow.com/questions/14877797/how-to-sum-two-fields-within-an-sql-query >. Accessed by Aug, 2018;
 * Decimal values in SQL for dividing results. URL: < https://stackoverflow.com/questions/4834973/decimal-values-in-sql-for-dividing-results >. Accessed by Aug, 2018;
 * How to exit from PostgreSQL command line utility: psql. URL: < https://stackoverflow.com/questions/9463318/how-to-exit-from-postgresql-command-line-utility-psql >. Accessed by Aug, 2018;
+
+
+# License
+
+MIT
