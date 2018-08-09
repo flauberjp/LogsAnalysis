@@ -2,8 +2,7 @@
 
 ##### Description
 
-This is a log analysis tool that prints out a report in plain text answering 
-the questions more below.  
+This is a log analysis tool that prints out a report in plain text answering the questions more below. 
 
 Questions:
 1. What are the most popular three articles of all time? 
@@ -13,6 +12,8 @@ Questions:
 Technically, it is program written in Python, which connects to PostgreSQL,
 which is a relational database, perform necessaries queriest to answer the 
 questions, then it formats the result in plain text easily readable. 
+
+It was developed by me as required by my [Full Stack Web Developer Nanodegree program](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004) I am enrolled.
 
 ##### How to run it:
 1. Requirements: To have PostgreSQL and Python installed; 
