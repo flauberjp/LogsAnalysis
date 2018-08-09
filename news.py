@@ -1,65 +1,25 @@
-#!/usr/bin/env python3
-# 
-# A buggy web service in need of a database.
+#!/usr/bin/env python2.7
 
-from flask import Flask, request, redirect, url_for
+import newsdb
 
-from newsdb import get_posts, add_post
-
-import bleach
-
-app = Flask(__name__)
-
-# HTML template for the forum page
-HTML_WRAP = '''\
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>DB Forum</title>
-    <style>
-      h1, form { text-align: center; }
-      textarea { width: 400px; height: 100px; }
-      div.post { border: 1px solid #999;
-                 padding: 10px 10px;
-                 margin: 10px 20%%; }
-      hr.postbound { width: 50%%; }
-      em.date { color: #999 }
-    </style>
-  </head>
-  <body>
-    <h1>DB Forum</h1>
-    <form method=post>
-      <div><textarea id="content" name="content"></textarea></div>
-      <div><button id="go" type="submit">Post message</button></div>
-    </form>
-    <!-- post content will go here -->
-%s
-  </body>
-</html>
+# template used in the answers printing
+LINE = '''
+    * "%s" - %s %s
 '''
-
-# HTML template for an individual comment
-POST = '''\
-    <div class=post><em class=date>%s</em><br>%s</div>
-'''
-
-
-@app.route('/', methods=['GET'])
-def main():
-  '''Main page of the forum.'''
-  posts = "".join(POST % (date, bleach.linkify(bleach.clean(text))) for text, date in get_posts())
-  html = HTML_WRAP % posts
-  return html
-
-
-@app.route('/', methods=['POST'])
-def post():
-  '''New post submission.'''
-  message = request.form['content']
-  add_post(bleach.clean(message))
-  return redirect(url_for('main'))
-
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=8000)
+    print("1. What are the most popular three articles of all time?")
+    posts = "".join(LINE % (title, views, "views") for title, views in
+                    newsdb.get_most_popular_three_articles_of_all_time())
+    print(posts)
 
+    print("2. Who are the most popular article authors of all time? ")
+    posts = "".join(LINE % (name, views, "views") for name, views in
+                    newsdb.get_most_popular_article_authors_of_all_time())
+    print(posts)
+
+    print("3. On which days did more than 1% of requests lead to errors? ")
+    posts = "".join(LINE % (date, percentage, "errors") for
+                    date, percentage in newsdb.
+                    get_days_where_1percent_plus_of_requests_lead_to_errors())
+    print(posts)
